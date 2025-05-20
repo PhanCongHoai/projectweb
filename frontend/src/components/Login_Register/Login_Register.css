@@ -1,0 +1,140 @@
+.login-wrapper {
+  width: 100%;
+  max-width: 400px;
+  margin: 60px auto;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab-menu button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tab-menu .active {
+  color: #e53935;
+  border-bottom: 2px solid #e53935;
+}
+
+.login-container {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.login-container label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 0.9rem;
+  color: #1a73e8;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 8px;
+}
+
+.forgot-password a {
+  color: #e53935;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+/* Gửi mã OTP */
+.otp-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.otp-wrapper input {
+  flex: 1;
+}
+
+.otp-btn {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Nút đăng nhập/đăng ký */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ddd;
+  color: #444;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #ccc;
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Lỗi */
+.error-input {
+  border-color: #e53935 !important;
+}
+
+.error-text {
+  color: #e53935;
+  font-size: 0.85rem;
+  margin: 4px 0 10px 0;
+}
+
+/* Ghi chú */
+.register-note {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #777;
+  text-align: center;
+}
+.register-note a {
+  color: #1a73e8;
+  text-decoration: none;
+}

@@ -1,0 +1,146 @@
+/* Định dạng chung cho footer */
+.footer {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===== LEFT SECTION ===== */
+.left-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 40%;
+}
+
+.left-section .logo {
+  width: 180px;
+  margin-bottom: 15px;
+}
+
+.address,
+.company-name,
+.address-detail,
+.note {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.cert-img {
+  width: 150px;
+  margin: 15px 0;
+}
+
+/* ===== SOCIAL LINKS ===== */
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: #ddd;
+  border-radius: 50%;
+  transition: 0.3s;
+  color: #333;
+}
+
+.social-icon:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* ===== APP LINKS ===== */
+.app-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.app-badge {
+  width: 120px;
+}
+
+/* ===== RIGHT SECTION ===== */
+.right-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 55%;
+}
+
+.service-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.service-column {
+  min-width: 150px;
+  margin-bottom: 20px;
+}
+
+.column-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.service-links {
+  list-style: none;
+  padding: 0;
+}
+
+.service-links li {
+  margin-bottom: 8px;
+}
+
+.service-links a {
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.service-links a:hover {
+  color: #007bff;
+}
+
+/* ===== LICENSE SECTION ===== */
+.license {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .left-section,
+  .right-section {
+    max-width: 100%;
+  }
+
+  .service-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+}

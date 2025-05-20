@@ -1,0 +1,99 @@
+.app {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Căn giữa danh mục và giảm chiều cao tổng */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 👈 Căn giữa các phần tử */
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 0;
+  min-height: 100px;
+  background-color: #fff; /* 👈 đổi sang #000 nếu muốn nền đen */
+  border-radius: 10px;
+}
+
+/* Mỗi item danh mục */
+.category-item {
+  text-align: center;
+  width: 80px;
+}
+
+/* Khung icon */
+.category-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+/* Hình ảnh trong icon */
+.category-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Tiêu đề */
+.category-title {
+  font-size: 12px;
+  color: #333;
+  margin: 4px 0 0;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Mô tả phụ */
+.category-subtitle {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+}
+
+/* Hiệu ứng hover */
+.category-item:hover .category-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive cho tablet */
+@media (max-width: 768px) {
+  .category-item {
+    width: 70px;
+  }
+
+  .category-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .category-title {
+    font-size: 11px;
+  }
+
+  .category-subtitle {
+    font-size: 9px;
+  }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 480px) {
+  .category-item {
+    width: 60px;
+  }
+
+  .category-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
