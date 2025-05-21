@@ -26,7 +26,6 @@ exports.register = async (req, res) => {
       address,
       password: hashed,
       role_id: Number(role_id) === 1 ? 1 : 0,
-
       created_at: new Date(),
       update_at: new Date(),
     });

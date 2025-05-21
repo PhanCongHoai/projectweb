@@ -1,62 +1,75 @@
+.categories-wrapper {
+  width: 70%;
+  margin: 0 auto;
+}
+
 .categories-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 10px;
-  border: 2px solid rgb(241, 17, 17);
-  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 10px 10px;
+  border-radius: 15px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(17, 13, 13, 0.05);
+  border: none !important;
 }
 
 .categories-title {
-  font-size: 18px;
+  margin-top: 5px;
+  font-size: 26px;
   font-weight: bold;
+  color: #0a0404;
   margin-bottom: 15px;
-  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px; /* tạo khoảng cách với đường kẻ */
+  border-bottom: 5px solid #c92127; /* ✅ đường kẻ đỏ */
+}
+
+.categories-title::before {
+  font-weight: bold;
 }
 
 .categories-list {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-.category-link {
-  text-decoration: none; /* Bỏ gạch chân mặc định của Link */
-  color: inherit; /* Giữ màu chữ giống mặc định */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* ✅ 5 cột mỗi hàng */
+  gap: 8px 8px;
+  justify-items: center; /* ✅ căn giữa từng item trong ô */
 }
 
 .category-item {
-  flex: 1;
-  min-width: 100px;
-  max-width: 110px;
   text-align: center;
-  transition: transform 0.2s; /* Hiệu ứng khi hover */
+  width: 100%;
+  max-width: 100px;
+  background-color: #ffffff;
 }
 
-.category-item:hover {
-  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+.category-link {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.category-link:hover {
+  transform: translateY(-2px);
 }
 
 .category-image {
   width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 5px;
+  height: 100%;
+  object-fit: contain;
   display: block;
+  background-color: transparent;
+  border: none;
 }
 
 .category-name {
-  font-size: 14px;
-  margin-top: 5px;
+  font-weight: bold;
+  margin-top: 6px;
+  font-size: 13px;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* Định dạng khi hover vào tên (nếu muốn giữ hiệu ứng riêng cho chữ) */
-.category-name:hover {
-  color: rgb(235, 115, 151);
 }

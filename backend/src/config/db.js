@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
-// Tạo đối tượng Sequelize kết nối SQL Server
+// ✅ Khởi tạo Sequelize instance
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -12,15 +12,15 @@ const sequelize = new Sequelize(
     dialect: process.env.DB_DIALECT,
     dialectOptions: {
       options: {
-        encrypt: process.env.DB_ENCRYPT === "true", // Mã hoá kết nối
-        trustServerCertificate: process.env.DB_TRUST_SERVER_CERT === "true", // Cho phép chứng chỉ tự ký
+        encrypt: process.env.DB_ENCRYPT === "true",
+        trustServerCertificate: process.env.DB_TRUST_SERVER_CERT === "true",
       },
     },
-    logging: process.env.DB_LOGGING === "true" ? console.log : false, // Bật/tắt log SQL
+    logging: process.env.DB_LOGGING === "true" ? console.log : false,
   }
 );
 
-// Hàm kiểm tra kết nối DB
+// ✅ Export riêng từng thành phần
 const connectDB = async () => {
   try {
     await sequelize.authenticate();
@@ -31,10 +31,9 @@ const connectDB = async () => {
   }
 };
 
-// Hàm sync cấu trúc bảng (không xóa dữ liệu)
 const syncDB = async () => {
   try {
-    await sequelize.sync(); // ✅ KHÔNG sử dụng force để tránh xóa bảng có FOREIGN KEY
+    await sequelize.sync();
     console.log("🔄 Sequelize sync thành công");
   } catch (err) {
     console.error("❌ Sequelize sync lỗi:", err);
@@ -42,4 +41,9 @@ const syncDB = async () => {
   }
 };
 
-module.exports = { sequelize, connectDB, syncDB };
+// ✅ Cách export đúng
+module.exports = {
+  sequelize, // dùng để import vào model: `require(...).sequelize`
+  connectDB,
+  syncDB,
+};

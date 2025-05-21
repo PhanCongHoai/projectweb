@@ -1,49 +1,60 @@
 import React from "react";
-import "./SearchBar.css";
+import "./SearchBar.css"; // Hoặc Header.css nếu bạn đổi tên
+
 const Header = () => {
   return (
     <header className="header">
-      {/* Logo */}
-      <div className="logo">
-        <a href="file:///C:/Users/ASUS/Documents/Project_Web/UserInterface/TrangChu.html">
+      {/* Logo + Menu Dropdown */}
+      <div className="header-left">
+        <a href="/">
           <img
             src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/fahasa-logo.png"
             alt="Fahasa Logo"
             className="logo-img"
           />
         </a>
+        <div className="menu-icon">
+          <i className="fa fa-th"></i>
+        </div>
       </div>
 
-      {/* Thanh tìm kiếm */}
-      <form className="search-bar" action="search.html" method="GET">
+      {/* Search Bar */}
+      <form className="search-bar" action="/search" method="GET">
         <input
           type="text"
           name="query"
-          placeholder="Tìm kiếm sản phẩm..."
+          placeholder="Một Con Người Và Một Dân Tộc"
           required
         />
-        <button type="submit">🔍</button>
+        <button type="submit">
+          <i className="fa fa-search"></i>
+        </button>
       </form>
 
-      {/* Menu điều hướng */}
-      <nav>
-        <ul>
-          <li>
-            <a href="file:///C:/Users/ASUS/Documents/JAVA/QuanLyNhaTro/GD_TrangChu.html">
-              Trang chủ
-            </a>
-          </li>
-          <li>
-            <a href="#">Giỏ hàng</a>
-          </li>
-          <li>
-            <a href="#">Liên hệ</a>
-          </li>
-          <li>
-            <a href="Login.html">Tài khoản</a>
-          </li>
-        </ul>
-      </nav>
+      {/* Right Side Icons */}
+      <div className="header-right">
+        <div className="icon-group">
+          <button type="button" className="icon notification">
+            <i className="fa fa-bell"></i>
+            <div>Thông Báo</div>
+          </button>
+          <button type="button" className="icon">
+            <i className="fa fa-shopping-cart"></i>
+            <div>Giỏ Hàng</div>
+          </button>
+          <button type="button" className="icon">
+            <i className="fa fa-user"></i>
+            <div>Tài Khoản</div>
+          </button>
+        </div>
+
+        <div className="lang">
+          <button className="lang-btn" type="button">
+            🇻🇳
+            <i className="fa fa-chevron-down"></i>
+          </button>
+        </div>
+      </div>
     </header>
   );
 };

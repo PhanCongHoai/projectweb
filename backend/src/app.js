@@ -5,45 +5,62 @@ const morgan = require("morgan");
 
 const { connectDB, syncDB } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
-// 1. Kết nối CSDL và đồng bộ Sequelize model
+// ---------------- KẾT NỐI CSDL ---------------- //
 (async () => {
-  await connectDB();
-  await syncDB(); // Không dùng force: true nếu đã có dữ liệu thật
+  try {
+    await connectDB(); // Kết nối SQL Server
+    await syncDB(); // Đồng bộ Sequelize model
+    console.log("✅ Kết nối CSDL thành công");
+  } catch (error) {
+    console.error("❌ Lỗi kết nối CSDL:", error);
+  }
 })();
 
-// 2. CORS - Cho phép frontend truy cập
+// ---------------- CẤU HÌNH CORS ---------------- //
+const allowedOrigins = ["http://localhost:3000"]; // ✅ chỉ cho phép frontend chạy ở cổng 3000
+
 app.use(
   cors({
-    origin: "http://localhost:3000", // ✅ khớp frontend
+    origin: function (origin, callback) {
+      // Cho phép cả Postman, curl không có Origin
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.warn("🚫 CORS blocked origin:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
 );
 
-// 3. Middleware đọc JSON và log
+// ---------------- MIDDLEWARE CHUNG ---------------- //
 app.use(express.json());
 app.use(morgan("dev"));
 
-// 4. Mount route auth
-app.use("/auth", authRoutes); // ✅ các route /auth/login và /auth/register
+// ---------------- ROUTES ---------------- //
+app.use("/auth", authRoutes); // Login, Register
+app.use("/api/categories", categoryRoutes); // Lấy danh mục sản phẩm
 
-// 5. Route test đơn giản
+// ---------------- ROUTE KIỂM TRA ---------------- //
 app.get("/", (req, res) => {
   res.send("✅ API đang chạy bình thường");
 });
 
-// 6. 404 handler
+// ---------------- 404 NOT FOUND ---------------- //
 app.use((req, res) => {
-  console.warn(`❗️ Không tìm thấy route: ${req.method} ${req.originalUrl}`);
+  console.warn(`Không tìm thấy route: ${req.method} ${req.originalUrl}`);
   res.status(404).json({ message: "Không tìm thấy đường dẫn này" });
 });
 
-// 7. Error handler chung
+// ---------------- XỬ LÝ LỖI TOÀN CỤC ---------------- //
 app.use((err, req, res, next) => {
-  console.error("🔥 Lỗi trong xử lý request:", err);
+  console.error("🔥 Lỗi xử lý request:", err);
   res.status(err.status || 500).json({
     message: err.message || "Lỗi máy chủ nội bộ",
   });

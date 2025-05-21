@@ -7,7 +7,7 @@
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 32px;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .stats-grid {
@@ -32,60 +32,27 @@
 
 .stat-card-icon {
   margin-right: 12px;
-  color: #3B82F6;
+  color: #3b82f6;
   font-size: 24px;
 }
 
 .stat-card-title {
   font-size: 18px;
-  color: #6B7280;
+  color: #6b7280;
 }
 
 .stat-card-value {
   font-size: 28px;
   font-weight: 600;
-  color: #1F2937;
+  color: #1f2937;
   display: flex;
   align-items: center;
 }
 
 .trend-up {
-  color: #10B981;
+  color: #10b981;
   margin-left: 8px;
   font-size: 20px;
-}
-
-.chart-container {
-  background-color: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 32px;
-}
-
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.chart-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1F2937;
-}
-
-.chart-actions {
-  color: #6B7280;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.chart-actions:hover {
-  color: #3B82F6;
 }
 
 .grid-2col {
@@ -103,7 +70,7 @@
 
 .table-header {
   padding: 20px 24px;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -112,7 +79,7 @@
 .table-title {
   font-size: 20px;
   font-weight: 600;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .table {
@@ -121,21 +88,21 @@
 }
 
 .table th {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   padding: 16px 24px;
   text-align: left;
   font-size: 14px;
   font-weight: 500;
-  color: #6B7280;
+  color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .table td {
   padding: 16px 24px;
-  border-bottom: 1px solid #E5E7EB;
+  border-bottom: 1px solid #e5e7eb;
   font-size: 16px;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .status-badge {
@@ -147,26 +114,26 @@
 }
 
 .status-completed {
-  background-color: #D1FAE5;
-  color: #065F46;
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .status-processing {
-  background-color: #FEF3C7;
-  color: #92400E;
+  background-color: #fef3c7;
+  color: #92400e;
 }
 
 .status-delivered {
-  background-color: #DBEAFE;
-  color: #1E40AF;
+  background-color: #dbeafe;
+  color: #1e40af;
 }
 
 .status-cancelled {
-  background-color: #FEE2E2;
-  color: #991B1B;
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .status-other {
-  background-color: #F3F4F6;
-  color: #1F2937;
+  background-color: #f3f4f6;
+  color: #1f2937;
 }

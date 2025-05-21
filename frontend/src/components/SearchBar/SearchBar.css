@@ -1,49 +1,107 @@
-header {
-  padding: 1rem;
+.header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center; /*Căng Giữa các phần tử con theo chiều dọc*/
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+  font-family: Arial, sans-serif;
 }
 
-header .logo img {
-  height: 35px;
-  width: auto;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.menu-icon i {
+  font-size: 20px;
+  color: #444;
   cursor: pointer;
 }
-header .search-bar {
-  overflow: hidden;
-  margin-left: 150px;
-  display: flex; /* Bố trí các phần tử theo hàng ngang*/
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  margin: 0 20px;
+  max-width: 700px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 40px;
-  padding: 5px 10px; /* Vị trí phần tử con các các phần tử xung quanh trên/dưới trai/phải*/
-  background: white;
-  width: 40%;
-}
-header .search-bar input {
-  flex: 1; /* Giúp input mở rộng toàn bộ chiều ngang */
-  border: none;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
   outline: none;
-  font-size: 16px;
 }
-header .search-bar button {
+
+.search-bar button {
+  background-color: #d0021b;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.icon-group button.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  color: #555;
+  position: relative;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  padding: 4px 8px;
 }
-nav ul {
+
+.icon-group button.icon:hover {
+  background-color: #f3f3f3;
+  border-radius: 6px;
+}
+
+.icon-group .icon i {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+.lang-btn {
+  border: 1px solid #ccc;
+  background: #fefefe;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
   display: flex;
-  list-style: none;
-}
-nav ul li {
-  margin-left: 20px;
-}
-nav ul li a {
-  color: rgb(14, 7, 7);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-nav ul li a:hover {
-  color: rgb(198, 32, 40);
+  align-items: center;
+  gap: 5px;
 }
