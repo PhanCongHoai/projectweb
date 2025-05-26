@@ -1,11 +1,12 @@
-.categories-wrapper {
-  width: 70%;
+.section-container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
 .categories-container {
   background-color: #ffffff;
-  padding: 10px 10px;
+  padding: 20px;
   border-radius: 15px;
   margin-top: 10px;
   box-shadow: 0 4px 12px rgba(17, 13, 13, 0.05);
@@ -13,41 +14,37 @@
 }
 
 .categories-title {
-  margin-top: 5px;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   color: #0a0404;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 8px; /* tạo khoảng cách với đường kẻ */
-  border-bottom: 5px solid #c92127; /* ✅ đường kẻ đỏ */
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
-.categories-title::before {
-  font-weight: bold;
+.categories-title i {
+  font-size: 18px;
 }
 
-.categories-list {
+/* ✅ Hiển thị dạng grid đẹp, không scroll */
+.categories-list-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* ✅ 5 cột mỗi hàng */
-  gap: 8px 8px;
-  justify-items: center; /* ✅ căn giữa từng item trong ô */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-items: center;
+  gap: 5px;
 }
 
 .category-item {
   text-align: center;
-  width: 100%;
-  max-width: 100px;
-  background-color: #ffffff;
 }
 
 .category-link {
   display: block;
   width: 80px;
   height: 80px;
-  background-color: transparent;
+  margin: 0 auto;
   transition: transform 0.2s ease;
 }
 
@@ -59,9 +56,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
-  background-color: transparent;
-  border: none;
 }
 
 .category-name {

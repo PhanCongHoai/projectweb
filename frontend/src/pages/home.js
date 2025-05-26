@@ -1,13 +1,15 @@
 import Advertisement from "../components/Advertisement/Advertisement";
 import Category from "../components/Category/Category";
+import SuggestionSection from "../components/SuggestionSection/SuggestionSection";
 import Event from "../components/Event/Event";
 
 const Home = ({ categories }) => {
   return (
     <main>
       <Advertisement />
-      <Category categories={categories} />
       <Event />
+      <Category categories={categories} />
+      <SuggestionSection />
     </main>
   );
 };

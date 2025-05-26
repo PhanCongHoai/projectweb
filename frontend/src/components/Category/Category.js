@@ -4,17 +4,21 @@ import "./Category.css";
 
 const Category = ({ categories }) => {
   return (
-    <div className="categories-wrapper">
+    <div className="section-container">
       <div className="categories-container">
-        <h4 className="categories-title">Danh mục sản phẩm</h4>
-        <div className="categories-list">
+        <h4 className="categories-title">
+          <i
+            className="fa-solid fa-border-all"
+            style={{ color: "#c92127", marginRight: 8 }}
+          ></i>
+          Danh mục sản phẩm
+        </h4>
+
+        <div className="categories-list-grid">
           {categories.length > 0 ? (
             categories.map((category) => (
               <div key={category.id} className="category-item">
-                <Link
-                  to={`/category/${encodeURIComponent(category.name)}`}
-                  className="category-link"
-                >
+                <Link to={`/category/${category.id}`} className="category-link">
                   <img
                     src={category.image}
                     alt={category.name}

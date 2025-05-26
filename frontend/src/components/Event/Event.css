@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   justify-content: center; /* 👈 Căn giữa các phần tử */
   align-items: flex-start;
-  gap: 16px;
+  gap: 40px;
   padding: 10px 0;
   min-height: 100px;
   background-color: #fff; /* 👈 đổi sang #000 nếu muốn nền đen */

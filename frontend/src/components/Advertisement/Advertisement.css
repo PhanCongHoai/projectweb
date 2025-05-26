@@ -1,29 +1,19 @@
-/* toàn bộ vùng ngoài slider sẽ vàng */
+/* Dùng chung cho các block căn đều */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
 .home-container {
-  padding: 20px; /* tạo “khoảng đệm” xung quanh */
-  display: flex;
-  justify-content: center; /* căn giữa slider ngang */
-  align-items: center; /* căn giữa slider dọc (nếu cần) */
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-/* slider rộng 80% khung, bạn có thể tùy chỉnh */
-.ad-slider {
-  width: 70%;
-  height: 100%;
-}
-
-/* mỗi slide có nền vàng, ảnh nằm ở giữa */
-.ad-slider .swiper-slide {
-  background-color: yellow;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* cho ảnh tự co giãn vừa slide */
 .ad-banner {
   width: 100%;
   height: auto;
-  display: block;
-  object-fit: cover; /* nếu bạn muốn ảnh phủ hết slide, giữ tỉ lệ */
+  object-fit: cover;
+  border-radius: 10px;
 }

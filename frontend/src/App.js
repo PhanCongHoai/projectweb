@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "./utils/axiosConfig";
 import SearchBar from "./components/SearchBar/SearchBar";
+import CategoryPage from "./components/Category/CategoryPage";
 import Footer from "./components/Footer/Footer";
 import LoginRegisterForm from "./components/LoginRegister/LoginRegister";
 import Home from "./pages/home";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Home categories={categories} />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginRegisterForm />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
         </Routes>
         <Footer />
       </div>
