@@ -45,6 +45,7 @@ export default function AuthForm() {
       } else {
         navigate("/"); // Người dùng
       }
+      window.location.reload();
     } catch (err) {
       setLoginError(err.response?.data?.message || "Đăng nhập thất bại");
     }

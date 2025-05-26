@@ -1,5 +1,5 @@
 .header-wrapper {
-  background-color: #f44336; /* Màu đỏ chủ đạo */
+  background-color: #f44336; /* màu nền đỏ */
   padding: 10px 0;
 }
 
@@ -8,42 +8,47 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 20px;
   background-color: #fff;
-  border-radius: 4px;
-  height: 50px;
+  border-radius: 6px;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  gap: 12px;
 }
 
 .logo {
-  height: 30px;
+  height: 32px;
 }
 
 .menu-icon {
-  margin-left: 10px;
   font-size: 18px;
   color: #333;
   cursor: pointer;
 }
 
+/* Thanh tìm kiếm */
 .search-bar {
   display: flex;
   flex: 1;
   margin: 0 20px;
+  max-width: 600px;
 }
 
 .search-bar input {
   flex: 1;
-  padding: 6px 12px;
+  padding: 7px 12px;
   border: 1px solid #ccc;
   border-right: none;
   border-radius: 4px 0 0 4px;
   font-size: 14px;
+  outline: none;
 }
 
 .search-bar button {
@@ -56,10 +61,11 @@
   font-size: 16px;
 }
 
+/* Cột bên phải */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
 }
 
 .icon-with-label {
@@ -80,17 +86,37 @@
   position: relative;
 }
 
-.badge {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background-color: red;
-  color: white;
-  font-size: 11px;
-  padding: 1px 5px;
-  border-radius: 10px;
+/* Dropdown tài khoản */
+.account-wrapper {
+  position: relative;
+  cursor: pointer;
 }
 
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-radius: 6px;
+  z-index: 100;
+  width: 150px;
+  text-align: left;
+}
+
+.account-dropdown div {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.account-dropdown div:hover {
+  background-color: #f0f0f0;
+}
+
+/* Ngôn ngữ */
 .lang-selector {
   border: 1px solid #ccc;
   padding: 4px 10px;
