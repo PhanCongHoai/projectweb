@@ -6,6 +6,7 @@ import "./Admin.css";
 import SummaryCards from "./Dashboard/SummaryCards";
 import RecentOrders from "./Dashboard/RecentOrders";
 import TopProducts from "./Dashboard/TopProducts";
+import SectionAdminUsers from "./SectionAdminUsers"; // ✅ import đúng đường dẫn nếu nằm trong Admin
 
 const Admin = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
@@ -18,7 +19,8 @@ const Admin = () => {
       {/* Main Content */}
       <div className="admin-content">
         {activeMenu === "dashboard" && <Dashboard />}
-        {/* Các trang khác sẽ được hiển thị tùy thuộc vào activeMenu */}
+        {activeMenu === "users" && <SectionAdminUsers />}{" "}
+        {/* ✅ THÊM DÒNG NÀY */}
       </div>
     </div>
   );
@@ -29,16 +31,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Tổng quan</h1>
-
-      {/* Cards thống kê */}
       <SummaryCards />
-
-      {/* Biểu đồ doanh thu */}
       <div className="grid-2col">
-        {/* Đơn hàng gần đây */}
         <RecentOrders />
-
-        {/* Sản phẩm bán chạy */}
         <TopProducts />
       </div>
     </div>

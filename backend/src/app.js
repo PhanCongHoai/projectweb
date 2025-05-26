@@ -7,6 +7,8 @@ const { connectDB, syncDB } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 // ---------------- KẾT NỐI CSDL ---------------- //
@@ -47,6 +49,7 @@ app.use(morgan("dev"));
 app.use("/auth", authRoutes); // Login, Register
 app.use("/api/categories", categoryRoutes); // Lấy danh mục sản phẩm
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 // ---------------- ROUTE KIỂM TRA ---------------- //
 app.get("/", (req, res) => {
   res.send("✅ API đang chạy bình thường");
