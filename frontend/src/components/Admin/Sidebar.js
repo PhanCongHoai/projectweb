@@ -35,9 +35,8 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         {menuItems.map((item) => (
           <div
             key={item.key}
-            className={`sidebar-item ${
-              activeMenu === item.key ? "active" : ""
-            }`}
+            className={`sidebar-item ${activeMenu === item.key ? "active" : ""
+              }`}
             onClick={() => setActiveMenu(item.key)}
           >
             <div className="sidebar-icon">{item.icon}</div>

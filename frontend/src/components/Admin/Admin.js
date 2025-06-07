@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./Admin.css";
+import SectionAdminProducts from "./SectionAdminProducts";
 
 // Components
 import SummaryCards from "./Dashboard/SummaryCards";
@@ -19,7 +20,8 @@ const Admin = () => {
       {/* Main Content */}
       <div className="admin-content">
         {activeMenu === "dashboard" && <Dashboard />}
-        {activeMenu === "users" && <SectionAdminUsers />}{" "}
+        {activeMenu === "users" && <SectionAdminUsers />}
+        {activeMenu === "products" && <SectionAdminProducts />}{" "}
         {/* ✅ THÊM DÒNG NÀY */}
       </div>
     </div>
