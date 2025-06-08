@@ -69,4 +69,10 @@ app.use((err, req, res, next) => {
   });
 });
 
+
+// Thêm route
+const forgotPasswordRoutes = require('./routes/forgotPasswordRoutes');
+
+app.use('/api/forgot-password', forgotPasswordRoutes);
+
 module.exports = app;

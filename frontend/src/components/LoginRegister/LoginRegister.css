@@ -46,10 +46,21 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .password-wrapper {
   position: relative;
+}
+
+.password-wrapper span {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  font-size: 0.9rem;
+  color: #1a73e8;
+  cursor: pointer;
+  transform: translateY(-50%);
 }
 
 .toggle-password {
@@ -71,6 +82,27 @@
   color: #e53935;
   font-size: 0.9rem;
   text-decoration: none;
+}
+
+/* Forgot Password Link - NEW */
+.forgot-password-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forgot-btn {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.forgot-btn:hover {
+  color: #d32f2f;
 }
 
 /* Gửi mã OTP */
@@ -127,6 +159,14 @@
   margin: 4px 0 10px 0;
 }
 
+/* Success Text - NEW */
+.success-text {
+  color: #4caf50;
+  font-size: 0.85rem;
+  margin: 4px 0 10px 0;
+  text-align: center;
+}
+
 /* Ghi chú */
 .register-note {
   margin-top: 20px;
@@ -134,7 +174,163 @@
   color: #777;
   text-align: center;
 }
+
 .register-note a {
   color: #1a73e8;
   text-decoration: none;
+}
+
+/* Modal Styles - NEW */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.forgot-form {
+  padding: 20px;
+}
+
+.forgot-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.forgot-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.forgot-form input:focus {
+  outline: none;
+  border-color: #e53935;
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  flex: 1;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #d32f2f;
+}
+
+.cancel-btn {
+  flex: 1;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #545b62;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-wrapper {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+  }
+  
+  .submit-btn,
+  .cancel-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .cancel-btn {
+    margin-bottom: 0;
+  }
 }
