@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SectionAdminProducts.css';
 
 export default function SectionAdminProducts() {
@@ -16,6 +16,81 @@ export default function SectionAdminProducts() {
 
     const [productList, setProductList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingList, setIsLoadingList] = useState(true); // Loading cho danh sách
+
+    // 🆕 Hàm để lấy danh sách sản phẩm từ database
+    const fetchProducts = async () => {
+        try {
+            setIsLoadingList(true);
+            console.log("🔄 Đang tải danh sách sản phẩm...");
+
+            const response = await fetch("http://localhost:5005/api/products");
+            console.log("📡 Response status:", response.status);
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("📥 Raw response data:", data);
+
+                // Thử các cấu trúc response khác nhau
+                let products = [];
+                if (Array.isArray(data)) {
+                    products = data;
+                } else if (data.data && Array.isArray(data.data)) {
+                    products = data.data;
+                } else if (data.products && Array.isArray(data.products)) {
+                    products = data.products;
+                } else {
+                    console.warn("⚠️ Không tìm thấy mảng sản phẩm trong response");
+                }
+
+                setProductList(products);
+                console.log("✅ Đã tải", products.length, "sản phẩm");
+            } else {
+                const errorData = await response.json().catch(() => ({}));
+                console.error("❌ API error:", response.status, errorData);
+                alert(`❌ Lỗi tải sản phẩm: ${errorData.message || 'Kiểm tra API endpoint'}`);
+            }
+        } catch (error) {
+            console.error("❌ Network error:", error);
+            alert(`❌ Lỗi kết nối: ${error.message}\nKiểm tra xem server có đang chạy không?`);
+        } finally {
+            setIsLoadingList(false);
+        }
+    };
+
+    // 🆕 Hàm xóa sản phẩm
+    const deleteProduct = async (productId) => {
+        if (!window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+            return;
+        }
+
+        try {
+            console.log("🗑️ Đang xóa sản phẩm ID:", productId);
+
+            const response = await fetch(`http://localhost:5005/api/products/${productId}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                alert("✅ Xóa sản phẩm thành công!");
+                // Cập nhật danh sách bằng cách loại bỏ sản phẩm đã xóa
+                setProductList(productList.filter(product => product.id !== productId));
+                console.log("✅ Đã xóa sản phẩm khỏi danh sách");
+            } else {
+                const errorData = await response.json().catch(() => ({}));
+                console.error("❌ Delete error:", errorData);
+                alert(`❌ Xóa sản phẩm thất bại: ${errorData.message || 'Lỗi server'}`);
+            }
+        } catch (error) {
+            console.error("❌ Network error:", error);
+            alert(`❌ Lỗi kết nối: ${error.message}`);
+        }
+    };
+
+    // 🆕 useEffect để load dữ liệu khi component mount
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,7 +135,7 @@ export default function SectionAdminProducts() {
             if (response.ok) {
                 alert("✅ Thêm sản phẩm thành công!");
 
-                // ✅ Fix: Thêm sản phẩm mới vào danh sách với dữ liệu từ server
+                // ✅ Thêm sản phẩm mới vào danh sách
                 setProductList([...productList, data.data]);
 
                 // ✅ Reset form
@@ -75,6 +150,9 @@ export default function SectionAdminProducts() {
                     number2: '',
                     category_id: '',
                 });
+
+                // 🆕 Tùy chọn: Reload lại danh sách để đảm bảo đồng bộ
+                // fetchProducts();
             } else {
                 console.error("❌ Server error:", data);
                 alert(`❌ Thêm sản phẩm thất bại: ${data.message}`);
@@ -208,8 +286,12 @@ export default function SectionAdminProducts() {
                 </button>
             </form>
 
+            {/* 🆕 Hiển thị loading khi đang tải danh sách */}
             <h3>Danh sách sản phẩm đã thêm ({productList.length})</h3>
-            {productList.length > 0 ? (
+
+            {isLoadingList ? (
+                <p>Đang tải danh sách sản phẩm...</p>
+            ) : productList.length > 0 ? (
                 <table className="product-table">
                     <thead>
                         <tr>
@@ -219,6 +301,7 @@ export default function SectionAdminProducts() {
                             <th>Giảm giá (%)</th>
                             <th>Giá gốc</th>
                             <th>Danh mục</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -230,13 +313,39 @@ export default function SectionAdminProducts() {
                                 <td>{product.discount}%</td>
                                 <td>{product.original_price?.toLocaleString()} đ</td>
                                 <td>{product.category_id}</td>
+                                <td>
+                                    <button
+                                        onClick={() => deleteProduct(product.id)}
+                                        style={{
+                                            backgroundColor: '#dc3545',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: '5px 10px',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer',
+                                            fontSize: '12px'
+                                        }}
+                                        disabled={!product.id}
+                                    >
+                                        🗑️ Xóa
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             ) : (
-                <p>Chưa có sản phẩm nào được thêm.</p>
+                <p>Chưa có sản phẩm nào trong database.</p>
             )}
+
+            {/* 🆕 Nút refresh danh sách */}
+            <button
+                onClick={fetchProducts}
+                disabled={isLoadingList}
+                style={{ marginTop: '10px', padding: '8px 16px' }}
+            >
+                {isLoadingList ? "Đang tải..." : "🔄 Làm mới danh sách"}
+            </button>
         </div>
     );
 }

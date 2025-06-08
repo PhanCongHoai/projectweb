@@ -1,5 +1,58 @@
 const Product = require("../models/product");
 
+// ✅ Thêm function để lấy tất cả sản phẩm
+exports.getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      order: [['id', 'DESC']] // Sắp xếp theo ID giảm dần (mới nhất trước)
+    });
+
+    res.json({
+      code: 200,
+      message: "Lấy danh sách tất cả sản phẩm thành công",
+      data: products,
+    });
+  } catch (error) {
+    console.error("Lỗi khi lấy tất cả sản phẩm:", error);
+    res.status(500).json({
+      code: 500,
+      message: "Lỗi server",
+    });
+  }
+};
+
+// ✅ Thêm function để xóa sản phẩm
+exports.deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Kiểm tra sản phẩm có tồn tại không
+    const product = await Product.findByPk(id);
+    if (!product) {
+      return res.status(404).json({
+        code: 404,
+        message: "Sản phẩm không tồn tại",
+      });
+    }
+
+    // Xóa sản phẩm
+    await Product.destroy({
+      where: { id: id }
+    });
+
+    res.json({
+      code: 200,
+      message: "Xóa sản phẩm thành công",
+    });
+  } catch (error) {
+    console.error("Lỗi khi xóa sản phẩm:", error);
+    res.status(500).json({
+      code: 500,
+      message: "Lỗi server",
+    });
+  }
+};
+
 exports.getProductsByCategory = async (req, res) => {
   const { id } = req.params;
   try {
