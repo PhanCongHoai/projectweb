@@ -19,8 +19,7 @@
 /* Grid chứa các sản phẩm */
 .suggestion-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 👉 luôn 5 sản phẩm mỗi hàng */
-
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
   padding: 0 12px; /* ✅ giúp lề trái phải đều nhau */
   box-sizing: border-box;

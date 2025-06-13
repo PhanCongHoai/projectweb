@@ -16,7 +16,7 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     { icon: <FaBox />, label: "Sản phẩm", key: "products" },
     // ✅ key sửa thành "users" để trùng với Admin.js
     { icon: <FaUsers />, label: "Khách hàng", key: "users" },
-    { icon: <FaChartBar />, label: "Phân tích", key: "analytics" },
+    { icon: <FaChartBar />, label: "Danh Mục", key: "categories" },
     { icon: <FaCog />, label: "Cài đặt", key: "settings" },
   ];
 

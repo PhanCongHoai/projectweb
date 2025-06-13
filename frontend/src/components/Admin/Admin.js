@@ -1,3 +1,5 @@
+// frontend/src/components/Admin/Admin.jsx
+
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./Admin.css";
@@ -6,8 +8,8 @@ import SectionAdminProducts from "./SectionAdminProducts";
 // Components
 import SummaryCards from "./Dashboard/SummaryCards";
 import RecentOrders from "./Dashboard/RecentOrders";
-import TopProducts from "./Dashboard/TopProducts";
-import SectionAdminUsers from "./SectionAdminUsers"; // ✅ import đúng đường dẫn nếu nằm trong Admin
+import SectionAdminUsers from "./SectionAdminUsers";
+import SectionAdminCategories from "./SectionAdminCategories/SectionAdminCategories";
 
 const Admin = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
@@ -21,25 +23,23 @@ const Admin = () => {
       <div className="admin-content">
         {activeMenu === "dashboard" && <Dashboard />}
         {activeMenu === "users" && <SectionAdminUsers />}
-        {activeMenu === "products" && <SectionAdminProducts />}{" "}
-        {/* ✅ THÊM DÒNG NÀY */}
+        {activeMenu === "products" && <SectionAdminProducts />}
+        {activeMenu === "categories" && <SectionAdminCategories />}
+        {activeMenu === "orders" && <RecentOrders />}
       </div>
     </div>
   );
 };
 
-// Dashboard Component
-const Dashboard = () => {
-  return (
-    <div className="dashboard-container">
-      <h1 className="dashboard-title">Tổng quan</h1>
-      <SummaryCards />
-      <div className="grid-2col">
-        <RecentOrders />
-        <TopProducts />
-      </div>
+// Dashboard component giữ nguyên
+const Dashboard = () => (
+  <div className="dashboard-container">
+    <h1 className="dashboard-title">Tổng quan</h1>
+    <SummaryCards />
+    <div className="grid-2col">
+      <RecentOrders />
     </div>
-  );
-};
+  </div>
+);
 
 export default Admin;

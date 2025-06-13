@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { sequelize } = require("../config/db"); // lấy thuộc tính `sequelize` từ export
+const { sequelize } = require("../config/db");
 
 const Product = sequelize.define(
   "Product",
@@ -12,14 +12,13 @@ const Product = sequelize.define(
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
     title: DataTypes.STRING,
-    product_url: DataTypes.STRING,
     image_url: DataTypes.STRING,
-    price: DataTypes.INTEGER,
     discount: DataTypes.INTEGER,
     original_price: DataTypes.INTEGER,
-    number: DataTypes.INTEGER,
-    number2: DataTypes.INTEGER,
+    SL: DataTypes.INTEGER, // thay cho number
+    DB: DataTypes.INTEGER, // thay cho number2
     category_id: DataTypes.INTEGER,
+    is_suggested: DataTypes.BOOLEAN, // nếu cột có kiểu bit / boolean
   },
   {
     tableName: "Product",

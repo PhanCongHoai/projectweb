@@ -1,5 +1,3 @@
-// Trang hiển thị thông tin khách hàng trong admin
-
 import React, { useEffect, useState } from "react";
 import axios from "../../utils/axiosConfig";
 import "./SectionAdminUsers.css";

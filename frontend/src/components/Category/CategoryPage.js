@@ -15,7 +15,7 @@ const CategoryPage = () => {
           setProducts(res.data.data);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("❌ Lỗi khi lấy sản phẩm:", err));
   }, [id]);
 
   return (
@@ -28,32 +28,45 @@ const CategoryPage = () => {
               product.original_price) *
               100
           );
+          const remaining = product.SL - product.DB;
 
           return (
             <div key={product.id} className="product-card">
-              <img
-                src={product.image_url}
-                alt={product.title}
-                className="product-image"
-              />
-              <h3 className="product-title">{product.title}</h3>
+              <div className="product-image-wrapper">
+                <img
+                  src={product.image}
+                  alt={product.title || "Sản phẩm"}
+                  className="product-image"
+                />
+              </div>
 
-              <div className="product-price">
+              {/* ✅ Hiển thị tên sản phẩm */}
+              <h3 className="product-title">
+                {product.title || "Không có tiêu đề"}
+              </h3>
+
+              <div className="product-price-group">
                 <span className="current-price">
                   {Number(product.price).toLocaleString()}₫
                 </span>
-                {discount > 0 && (
-                  <span className="discount-badge">-{discount}%</span>
-                )}
+                <span className="old-price">
+                  {Number(product.original_price).toLocaleString()}₫
+                </span>
               </div>
 
-              <div className="old-price">
-                {Number(product.original_price).toLocaleString()}₫
+              {discount > 0 && (
+                <div className="discount-badge">-{discount}%</div>
+              )}
+
+              <div className="sold-info">
+                Đã bán {product.DB} | Còn lại {remaining}
               </div>
 
-              <div className="sold-info">Đã bán {product.number2}</div>
-
-              <button className="add-to-cart-btn">Thêm giỏ hàng</button>
+              {remaining > 0 ? (
+                <button className="add-to-cart-btn">Thêm giỏ hàng</button>
+              ) : (
+                <span className="out-of-stock">Hết hàng</span>
+              )}
             </div>
           );
         })}
