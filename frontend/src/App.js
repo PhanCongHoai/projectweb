@@ -1,10 +1,10 @@
 import React from "react";
 
 
-import Footer from "./components/Footer/Footer";
+import Advertisement from "./components/Advertisement/Advertisement";
 
 function App() {
-  return <Footer />;
+  return <Advertisement />;
 }
 
 export default App;
