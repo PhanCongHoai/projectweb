@@ -1,10 +1,10 @@
 import React from "react";
 
 
-import Advertisement from "./components/Advertisement/Advertisement";
+import Event from "./components/Event/Event";
 
 function App() {
-  return <Advertisement />;
+  return <Event />;
 }
 
 export default App;
