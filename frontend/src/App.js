@@ -1,10 +1,10 @@
 import React from "react";
 
 
-import Event from "./components/Event/Event";
+import SuggestionSection from "./components/SuggestionSection/SuggestionSection";
 
 function App() {
-  return <Event />;
+  return <SuggestionSection />;
 }
 
 export default App;
