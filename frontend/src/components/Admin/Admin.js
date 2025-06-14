@@ -11,8 +11,6 @@ import RecentOrders from "./Dashboard/RecentOrders";
 import SectionAdminUsers from "./SectionAdminUsers";
 import SectionAdminCategories from "./SectionAdminCategories/SectionAdminCategories";
 
-// comment admin page
-// Hoang commit
 const Admin = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
 
