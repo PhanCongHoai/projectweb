@@ -10,7 +10,7 @@ import SummaryCards from "./Dashboard/SummaryCards";
 import RecentOrders from "./Dashboard/RecentOrders";
 import SectionAdminUsers from "./SectionAdminUsers";
 import SectionAdminCategories from "./SectionAdminCategories/SectionAdminCategories";
-//Admin page
+
 const Admin = () => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
 
