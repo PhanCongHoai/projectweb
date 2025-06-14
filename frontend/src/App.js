@@ -1,9 +1,10 @@
 import React from "react";
 
-import Admin from "./components/Admin/Admin";
+
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  return <Admin />;
+  return <Footer />;
 }
 
 export default App;
