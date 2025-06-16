@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
-
+module.exports = (sequelize, DataTypes) => {
 const Category = sequelize.define(
   "Category",
   {
@@ -13,5 +13,6 @@ const Category = sequelize.define(
     timestamps: false,
   }
 );
+return { Category };
+}
 
-module.exports = { Category };
