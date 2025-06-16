@@ -52,6 +52,8 @@ export default function AuthForm() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.removeItem("userId");
+      localStorage.setItem("userId", res.data.user.id);
       alert("Đăng nhập thành công!");
 
       if (res.data.user.role_id === 1) {

@@ -119,3 +119,8 @@
   color: #555;
   margin-top: 2px;
 }
+
+.link-no-underline {
+  text-decoration: none;
+  color: inherit; /* Giữ màu chữ giống như bình thường */
+}

@@ -31,6 +31,8 @@ const Header = () => {
   const handleLogout = useCallback(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.setItem("userId", 0); 
     setUser(null);
     setShowDropdown(false);
     navigate("/");
@@ -98,13 +100,19 @@ const Header = () => {
         {/* Right icons */}
         <div className="header-right">
           <div className="icon-with-label">
-            <i className="fa fa-bell" aria-hidden="true"></i>
-            <div className="label">Thông Báo</div>
+            <Link to="/orders" className="icon-with-label link-no-underline">
+              <div className="icon-bell">
+                <i className="fa fa-bell"></i>
+              </div>
+              <div className="label">Đơn đã mua</div>
+            </Link>
           </div>
 
           <div className="icon-with-label">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            <div className="label">Giỏ Hàng</div>
+            <Link to="/cart" className="cart-link link-no-underline">
+            <div className="label">🛒Giỏ Hàng</div>
+            </Link>
           </div>
 
           {/* Tài khoản */}
