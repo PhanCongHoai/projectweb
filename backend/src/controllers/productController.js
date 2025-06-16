@@ -1,4 +1,4 @@
-const Product = require("../models/product");
+const {Product} = require("../models");
 const { Op } = require("sequelize");
 
 // ✅ Lấy tất cả sản phẩm
