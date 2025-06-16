@@ -12,6 +12,12 @@ import AdminPage from "./pages/admin";
 import ResetPassword from './components/ResetPassword/ResetPassword'; // Form yêu cầu reset
 import ResetPasswordPage from './components/ResetPassword/ResetPasswordPage'; // Trang reset từ email
 
+import ProductDetail from "./pages/ProductDetail";
+import CheckoutPage from "./pages/CheckoutPage";
+import CartPage from './pages/CartPage';
+import OrderListPage from "./pages/OrderListPage";
+
+
 function App() {
   const [categories, setCategories] = useState([]);
 
@@ -37,6 +43,10 @@ function App() {
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/forgot-password" element={<ResetPassword />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/checkout" element={<CheckoutPage />} />        
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/orders" element={<OrderListPage />} />        
         </Routes>
         <Footer />
       </div>
