@@ -127,3 +127,8 @@
   gap: 4px;
   cursor: pointer;
 }
+
+.link-no-underline {
+  text-decoration: none;
+  color: inherit; /* Giữ màu chữ giống như bình thường */
+}

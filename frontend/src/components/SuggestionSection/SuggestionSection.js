@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../utils/axiosConfig";
 import "./SuggestionSection.css";
-
+import { Link } from "react-router-dom";
 const SuggestionSection = () => {
   const [products, setProducts] = useState([]);
 
@@ -32,7 +32,8 @@ const SuggestionSection = () => {
               : calculatePrice(p.original_price, p.discount);
 
           return (
-            <div key={p.id} className="suggestion-card">
+            <Link to={`/product/${p.id}`} key={p.id} className="link-no-underline">
+            <div  className="suggestion-card">
               <div className="image-wrapper">
                 <img src={p.image_url} alt={p.title} />
               </div>
@@ -55,6 +56,7 @@ const SuggestionSection = () => {
                 <div className="suggestion-sold">Đã bán {p.DB}</div>
               </div>
             </div>
+            </Link>
           );
         })}
       </div>
