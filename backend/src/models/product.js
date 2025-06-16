@@ -15,8 +15,8 @@ const Product = sequelize.define(
     image_url: DataTypes.STRING,
     discount: DataTypes.INTEGER,
     original_price: DataTypes.INTEGER,
-    SL: DataTypes.INTEGER, // thay cho number
-    DB: DataTypes.INTEGER, // thay cho number2
+    number: DataTypes.INTEGER, 
+    number2: DataTypes.INTEGER, 
     category_id: DataTypes.INTEGER,
     is_suggested: DataTypes.BOOLEAN, // nếu cột có kiểu bit / boolean
   },
