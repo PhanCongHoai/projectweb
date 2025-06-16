@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:5005/
+    networks:
+      - project-net
+
+  backend:
+    build: ./backend
+    ports:
+      - "5005:5005"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    networks:
+      - project-net
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: data-v2
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "123"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    networks:
+      - project-net
+
+volumes:
+  sqlvolume:
+
+
+networks:
+  project-net:
