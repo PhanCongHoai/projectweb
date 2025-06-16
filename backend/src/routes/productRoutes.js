@@ -20,5 +20,8 @@ router.get("/suggested", productController.getSuggestedProducts);
 // Tìm kiếm sản phẩm
 router.get("/search", productController.searchProducts);
 
+// Xem chi tiết sản phẩm
+router.get("/:id", productController.getProductById);
+
 // Xuất router
 module.exports = router;
