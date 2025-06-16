@@ -1,4 +1,4 @@
-const {Product} = require("../models");
+const { Product } = require("../models");
 const { Op } = require("sequelize");
 
 // ✅ Lấy tất cả sản phẩm
@@ -27,7 +27,6 @@ exports.getAllProducts = async (req, res) => {
         image,
       };
     });
-
     res.json({
       code: 200,
       message: "Lấy danh sách tất cả sản phẩm thành công",
@@ -79,7 +78,8 @@ exports.createProduct = async (req, res) => {
     }
 
     const discountValue = discount || 0;
-    const finalPrice = Math.max(0, original_price * (1 - discountValue / 100));
+    const finalPrice = Math.max(0, parseFloat(original_price) - ((parseFloat(original_price) * discountValue) / 100));
+
 
     const newProduct = await Product.create({
       title,
@@ -145,8 +145,8 @@ exports.getProductsByCategory = async (req, res) => {
         original_price: p.original_price,
         discount,
         price,
-        SL: p.SL,
-        DB: p.DB,
+        SL: p.number,
+        DB: p.number2,
         category_id: p.category_id,
         is_suggested: p.is_suggested,
         created_at: p.created_at,
@@ -169,7 +169,7 @@ exports.getProductsByCategory = async (req, res) => {
 exports.getSuggestedProducts = async (req, res) => {
   try {
     const host = `${req.protocol}://${req.get("host")}`;
-    const products = await Product.findAll({ where: { is_suggested: true } });
+    const products = await Product.findAll({ where: { is_suggested: true} });
 
     const data = products.map((p) => {
       const discount = p.discount || 0;
@@ -183,7 +183,12 @@ exports.getSuggestedProducts = async (req, res) => {
         ? `${host}/uploads/products/${raw}`
         : "";
 
-      return { ...p.toJSON(), price, image };
+      return { ...p.toJSON(),
+        SL: p.number,         
+        DB: p.number2, 
+        price, 
+        image 
+      };
     });
 
     res.json({
@@ -238,6 +243,51 @@ exports.searchProducts = async (req, res) => {
     res.status(500).json({
       code: 500,
       message: "Lỗi server khi tìm kiếm sản phẩm",
+    });
+  }
+};
+
+
+// ✅ Lấy chi tiết sản phẩm theo ID
+exports.getProductById = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.status(404).json({
+        code: 404,
+        message: "Sản phẩm không tồn tại",
+      });
+    }
+    const discount = product.discount || 0;
+    const price = product.original_price
+      ? Math.round(product.original_price * (1 - discount / 100))
+      : 0;
+
+     const raw = product.image_url || "";
+    const host = `${req.protocol}://${req.get("host")}`;
+    const image = raw.startsWith("http")
+      ? raw
+      : raw
+      ? `${host}/uploads/products/${raw}`
+      : "";
+
+    res.json({
+      code: 200,
+      message: "Lấy chi tiết sản phẩm thành công",
+      data: {
+        ...product.toJSON(),
+        price,
+        image,
+      },
+    });
+  } catch (error) {
+    console.error("Lỗi khi lấy chi tiết sản phẩm:", error);
+    res.status(500).json({
+      code: 500,
+      message: "Lỗi server",
     });
   }
 };
