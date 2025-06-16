@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const {User} = require("../models");
 
 // Đăng ký tài khoản (mặc định là admin: role_id = 1)
 exports.register = async (req, res) => {
