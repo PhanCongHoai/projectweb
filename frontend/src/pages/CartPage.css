@@ -1,0 +1,35 @@
+.cart-page {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.cart-table th {
+  background-color: #f0f0f0;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  padding: 10px 20px;
+  background-color: #d0021b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
