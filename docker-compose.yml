@@ -18,9 +18,23 @@ services:
       - "5005:5005"
     env_file:
       - ./backend/.env
+    depends_on:
+      - mssql
     networks:
       - project-net
-      - default # ✅ Thêm network default để kết nối với data-v2
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd" # Trùng với .env
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    networks:
+      - project-net
 
 volumes:
   sqlvolume:
@@ -28,3 +42,4 @@ volumes:
 
 networks:
   project-net:
+    driver: bridge
