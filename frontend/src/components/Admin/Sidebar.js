@@ -14,10 +14,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
     { icon: <FaChartLine />, label: "Tổng quan", key: "dashboard" },
     { icon: <FaShoppingCart />, label: "Đơn hàng", key: "orders" },
     { icon: <FaBox />, label: "Sản phẩm", key: "products" },
-    // ✅ key sửa thành "users" để trùng với Admin.js
     { icon: <FaUsers />, label: "Khách hàng", key: "users" },
     { icon: <FaChartBar />, label: "Danh Mục", key: "categories" },
-    { icon: <FaCog />, label: "Cài đặt", key: "settings" },
+    { icon: <FaCog />, label: "Thống Kê", key: "revenue" }, // ✅ sửa đúng key
   ];
 
   return (
@@ -35,8 +34,9 @@ const Sidebar = ({ activeMenu, setActiveMenu }) => {
         {menuItems.map((item) => (
           <div
             key={item.key}
-            className={`sidebar-item ${activeMenu === item.key ? "active" : ""
-              }`}
+            className={`sidebar-item ${
+              activeMenu === item.key ? "active" : ""
+            }`}
             onClick={() => setActiveMenu(item.key)}
           >
             <div className="sidebar-icon">{item.icon}</div>
