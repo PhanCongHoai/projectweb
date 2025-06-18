@@ -10,7 +10,7 @@ const OrderListPage = () => {
     api
       .get(`/api/orders/user/${userId}`)
       .then((res) => {
-        setOrders(res.data.orders || []);
+        setOrders(res.data.data || []);
       })
       .catch((err) => {
         console.error("Lỗi lấy đơn hàng:", err);
@@ -18,7 +18,9 @@ const OrderListPage = () => {
   }, [userId]);
 
   const handleCancelOrder = async (orderId) => {
-    const confirmCancel = window.confirm("Bạn có chắc chắn muốn hủy đơn hàng này?");
+    const confirmCancel = window.confirm(
+      "Bạn có chắc chắn muốn hủy đơn hàng này?"
+    );
     if (!confirmCancel) return;
 
     try {
@@ -45,12 +47,26 @@ const OrderListPage = () => {
         orders.map((order) => (
           <div key={order.id} className="order-card">
             <h3>Đơn hàng</h3>
-            <p><strong>Người đặt:</strong> {order.name}</p>
-            <p><strong>Số điện thoại:</strong> {order.phone}</p>
-            <p><strong>Địa chỉ:</strong> {order.address}</p>
-            <p><strong>Ngày đặt:</strong> {new Date(order.orderDate).toLocaleString()}</p>
-            <p><strong>Tổng tiền:</strong> {Number(order.totalAmount).toLocaleString()}₫</p>
-            <p><strong>Trạng thái:</strong> {order.status}</p>
+            <p>
+              <strong>Người đặt:</strong> {order.name}
+            </p>
+            <p>
+              <strong>Số điện thoại:</strong> {order.phone}
+            </p>
+            <p>
+              <strong>Địa chỉ:</strong> {order.address}
+            </p>
+            <p>
+              <strong>Ngày đặt:</strong>{" "}
+              {new Date(order.orderDate).toLocaleString()}
+            </p>
+            <p>
+              <strong>Tổng tiền:</strong>{" "}
+              {Number(order.totalAmount).toLocaleString()}₫
+            </p>
+            <p>
+              <strong>Trạng thái:</strong> {order.status}
+            </p>
 
             {/* Nút hủy đơn hàng (chỉ hiển thị nếu chưa giao và chưa hủy) */}
             {order.status !== "Đã giao" && order.status !== "Đã hủy" && (
@@ -63,7 +79,7 @@ const OrderListPage = () => {
                   border: "none",
                   borderRadius: "5px",
                   marginTop: "10px",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 Hủy đơn
@@ -73,14 +89,26 @@ const OrderListPage = () => {
             <hr />
             {order.OrderItems?.map((item) => (
               <div key={item.id} className="order-item">
-                <p><strong>Sản phẩm:</strong> {item.Product?.title}</p>
+                <p>
+                  <strong>Sản phẩm:</strong> {item.Product?.title}
+                </p>
                 <img
                   src={item.Product?.image_url}
                   alt={item.Product?.title}
-                  style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "8px" }}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
                 />
-                <p><strong>Số lượng:</strong> {item.quantity}</p>
-                <p><strong>Giá:</strong> {Number(item.unitPrice).toLocaleString()}₫</p>
+                <p>
+                  <strong>Số lượng:</strong> {item.quantity}
+                </p>
+                <p>
+                  <strong>Giá:</strong>{" "}
+                  {Number(item.unitPrice).toLocaleString()}₫
+                </p>
               </div>
             ))}
           </div>

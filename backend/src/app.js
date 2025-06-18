@@ -9,9 +9,8 @@ const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-const orderRoutes = require('./routes/orderRoutes');
-
-
+const orderRoutes = require("./routes/orderRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 const userRoutes = require("./routes/userRoutes");
 const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
 
@@ -57,9 +56,9 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes); // ✅ THÊM ROUTE GIỎ HÀNG
-app.use('/api/orders', orderRoutes);
+app.use("/api/orders", orderRoutes);
 app.use("/api/forgot-password", forgotPasswordRoutes);
-
+app.use("/api/reports", reportRoutes); // ✅ Đúng với frontend gọi
 // ---------------- ROUTE KIỂM TRA ---------------- //
 app.get("/", (req, res) => {
   res.send("✅ API đang chạy bình thường");

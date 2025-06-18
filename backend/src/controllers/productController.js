@@ -1,6 +1,16 @@
 const { Product } = require("../models");
 const { Op } = require("sequelize");
 
+function formatDateForSQLServer(date) {
+  const yyyy = date.getFullYear();
+  const MM = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  const HH = String(date.getHours()).padStart(2, "0");
+  const mm = String(date.getMinutes()).padStart(2, "0");
+  const ss = String(date.getSeconds()).padStart(2, "0");
+  return `${yyyy}-${MM}-${dd} ${HH}:${mm}:${ss}`; // ✅ Sửa: thêm dấu `
+}
+
 // ✅ Lấy tất cả sản phẩm
 exports.getAllProducts = async (req, res) => {
   try {
@@ -78,20 +88,26 @@ exports.createProduct = async (req, res) => {
     }
 
     const discountValue = discount || 0;
-    const finalPrice = Math.max(0, parseFloat(original_price) - ((parseFloat(original_price) * discountValue) / 100));
+    const finalPrice = Math.max(
+      0,
+      parseFloat(original_price) -
+        (parseFloat(original_price) * discountValue) / 100
+    );
 
-
+    const formattedDate = formatDateForSQLServer(new Date());
     const newProduct = await Product.create({
       title,
       image_url: image_url || "",
       price: Math.round(finalPrice),
       discount: discountValue,
       original_price,
-      SL: SL || 0,
-      DB: DB || 0,
+      number: SL || 0,
+      number2: DB || 0,
       category_id,
+      created_at: formattedDate,
+      updated_at: formattedDate,
     });
-
+    console.log(newProduct);
     res.status(201).json({
       code: 201,
       message: "Thêm sản phẩm thành công",
@@ -169,7 +185,7 @@ exports.getProductsByCategory = async (req, res) => {
 exports.getSuggestedProducts = async (req, res) => {
   try {
     const host = `${req.protocol}://${req.get("host")}`;
-    const products = await Product.findAll({ where: { is_suggested: true} });
+    const products = await Product.findAll({ where: { is_suggested: true } });
 
     const data = products.map((p) => {
       const discount = p.discount || 0;
@@ -183,12 +199,7 @@ exports.getSuggestedProducts = async (req, res) => {
         ? `${host}/uploads/products/${raw}`
         : "";
 
-      return { ...p.toJSON(),
-        SL: p.number,         
-        DB: p.number2, 
-        price, 
-        image 
-      };
+      return { ...p.toJSON(), SL: p.number, DB: p.number2, price, image };
     });
 
     res.json({
@@ -247,7 +258,6 @@ exports.searchProducts = async (req, res) => {
   }
 };
 
-
 // ✅ Lấy chi tiết sản phẩm theo ID
 exports.getProductById = async (req, res) => {
   try {
@@ -266,7 +276,7 @@ exports.getProductById = async (req, res) => {
       ? Math.round(product.original_price * (1 - discount / 100))
       : 0;
 
-     const raw = product.image_url || "";
+    const raw = product.image_url || "";
     const host = `${req.protocol}://${req.get("host")}`;
     const image = raw.startsWith("http")
       ? raw
