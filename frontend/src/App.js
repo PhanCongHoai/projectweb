@@ -9,14 +9,14 @@ import LoginRegisterForm from "./components/LoginRegister/LoginRegister";
 import Home from "./pages/home";
 import AdminPage from "./pages/admin";
 
-import ResetPassword from './components/ResetPassword/ResetPassword'; // Form yêu cầu reset
-import ResetPasswordPage from './components/ResetPassword/ResetPasswordPage'; // Trang reset từ email
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
 
 import ProductDetail from "./pages/ProductDetail";
 import CheckoutPage from "./pages/CheckoutPage";
-import CartPage from './pages/CartPage';
+import CartPage from "./pages/CartPage";
 import OrderListPage from "./pages/OrderListPage";
-
+import SearchResults from "./components/Search/SearchResults";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -42,22 +42,20 @@ function App() {
           <Route path="/login" element={<LoginRegisterForm />} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/forgot-password" element={<ResetPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPasswordPage />}
+          />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/checkout" element={<CheckoutPage />} />        
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/orders" element={<OrderListPage />} />        
+          <Route path="/orders" element={<OrderListPage />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
         <Footer />
       </div>
     </Router>
   );
 }
-
-
-
-
-
-
 
 export default App;

@@ -1,5 +1,5 @@
 const { Product } = require("../models");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 
 function formatDateForSQLServer(date) {
   const yyyy = date.getFullYear();
@@ -185,7 +185,14 @@ exports.getProductsByCategory = async (req, res) => {
 exports.getSuggestedProducts = async (req, res) => {
   try {
     const host = `${req.protocol}://${req.get("host")}`;
-    const products = await Product.findAll({ where: { is_suggested: true } });
+
+    const products = await Product.findAll({
+      where: Sequelize.where(Sequelize.literal("[number] - [number2]"), {
+        [Op.gt]: 0,
+      }),
+      order: [["number2", "DESC"]],
+      limit: 10,
+    });
 
     const data = products.map((p) => {
       const discount = p.discount || 0;
@@ -199,7 +206,13 @@ exports.getSuggestedProducts = async (req, res) => {
         ? `${host}/uploads/products/${raw}`
         : "";
 
-      return { ...p.toJSON(), SL: p.number, DB: p.number2, price, image };
+      return {
+        ...p.toJSON(),
+        SL: p.number, // Số lượng tồn
+        DB: p.number2, // Đã bán
+        price,
+        image,
+      };
     });
 
     res.json({
@@ -208,11 +221,12 @@ exports.getSuggestedProducts = async (req, res) => {
       data,
     });
   } catch (error) {
-    console.error("Lỗi khi lấy sản phẩm gợi ý:", error);
+    console.error("❌ Lỗi khi lấy sản phẩm gợi ý:", error);
     res.status(500).json({ code: 500, message: "Lỗi server" });
   }
 };
 
+// ✅ Tìm kiếm sản phẩm
 // ✅ Tìm kiếm sản phẩm
 exports.searchProducts = async (req, res) => {
   const { query } = req.query;
@@ -241,7 +255,7 @@ exports.searchProducts = async (req, res) => {
         ? `${host}/uploads/products/${raw}`
         : "";
 
-      return { ...p.toJSON(), price, image };
+      return { ...p.toJSON(), SL: p.number, DB: p.number2, price, image };
     });
 
     res.json({

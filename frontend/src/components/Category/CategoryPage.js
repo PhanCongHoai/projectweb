@@ -9,29 +9,30 @@ const CategoryPage = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
 
-const handleAddToCart = (product) => {
+  const handleAddToCart = (product) => {
     const userId = getUserId();
-    if(userId === 0) { 
+    if (userId === 0) {
       alert("Vui lòng đăng nhập");
       return;
     }
-   // Giả sử đang đăng nhập với user_id = 1
+    // Giả sử đang đăng nhập với user_id = 1
     const remainingStock = product.number - product.number2;
 
-  if (remainingStock <= 0) {
-    alert("Sản phẩm đã hết hàng");
-    return;
-  }
-  axios.post("/api/cart/add", {
-  userId: userId,
-  productId: product.id,
-  quantity: 1,
-})
-    .then(() => {
-      alert("Đã thêm vào giỏ hàng (backend)");
-    })
-    .catch((err) => console.error("Lỗi thêm giỏ hàng", err));
-};
+    if (remainingStock <= 0) {
+      alert("Sản phẩm đã hết hàng");
+      return;
+    }
+    axios
+      .post("/api/cart/add", {
+        userId: userId,
+        productId: product.id,
+        quantity: 1,
+      })
+      .then(() => {
+        alert("Đã thêm vào giỏ hàng (backend)");
+      })
+      .catch((err) => console.error("Lỗi thêm giỏ hàng", err));
+  };
 
   useEffect(() => {
     axios
@@ -57,49 +58,50 @@ const handleAddToCart = (product) => {
           const remaining = product.SL - product.DB;
 
           return (
-            
-            <div  className="product-card" key={product.id}>
-              <Link to={`/product/${product.id}`} className="link-no-underline" >
-              <div className="product-image-wrapper">
-                <img
-                  src={product.image}
-                  alt={product.title || "Sản phẩm"}
-                  className="product-image"
-                />
-              </div>
+            <div className="product-card" key={product.id}>
+              <Link to={`/product/${product.id}`} className="link-no-underline">
+                <div className="product-image-wrapper">
+                  <img
+                    src={product.image}
+                    alt={product.title || "Sản phẩm"}
+                    className="product-image"
+                  />
+                </div>
 
-              {/* ✅ Hiển thị tên sản phẩm */}
-              
-              <h3 className="product-title">
-                {product.title || "Không có tiêu đề"}
-              </h3>
-              
+                {/* ✅ Hiển thị tên sản phẩm */}
 
-              <div className="product-price-group">
-                <span className="current-price">
-                  {Number(product.price).toLocaleString()}₫
-                </span>
-                <span className="old-price">
-                  {Number(product.original_price).toLocaleString()}₫
-                </span>
-              </div>
+                <h3 className="product-title">
+                  {product.title || "Không có tiêu đề"}
+                </h3>
 
-              {discount > 0 && (
-                <div className="discount-badge">-{discount}%</div>
-              )}
+                <div className="product-price-group">
+                  <span className="current-price">
+                    {Number(product.price).toLocaleString()}₫
+                  </span>
+                  <span className="old-price">
+                    {Number(product.original_price).toLocaleString()}₫
+                  </span>
+                </div>
 
-              <div className="sold-info">
-                Đã bán {product.DB} | Còn lại {remaining}
-              </div>
+                {discount > 0 && (
+                  <div className="discount-badge">-{discount}%</div>
+                )}
 
+                <div className="sold-info">
+                  Đã bán {product.DB} | Còn lại {remaining}
+                </div>
+              </Link>
               {remaining > 0 ? (
-                <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>Thêm giỏ hàng</button>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Thêm giỏ hàng
+                </button>
               ) : (
                 <span className="out-of-stock">Hết hàng</span>
               )}
-              </Link>
             </div>
-            
           );
         })}
       </div>

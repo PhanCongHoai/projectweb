@@ -1,43 +1,56 @@
 import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import api from "../../../utils/axiosConfig";
 
-// 👇 Cần import và đăng ký các thành phần cần thiết của Chart.js
 import {
   Chart as ChartJS,
-  LineElement,
+  BarElement,
   CategoryScale,
   LinearScale,
-  PointElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 
+// Đăng ký thành phần của Bar chart
 ChartJS.register(
-  LineElement,
+  BarElement,
   CategoryScale,
   LinearScale,
-  PointElement,
   Title,
   Tooltip,
   Legend
 );
 
 const RevenueChart = () => {
-  const [chartData, setChartData] = useState(null); // 👈 ban đầu null
+  const [chartData, setChartData] = useState(null);
   const [type, setType] = useState("day");
 
   const fetchData = async () => {
     try {
-      const res = await api.get(`/api/reports/revenue?type=${type}`); // ✅ Đã sửa đúng endpoint
+      const res = await api.get(`/api/reports/revenue?type=${type}`);
       if (res.data.code === 200) {
-        const labels = res.data.data.map((item) =>
-          type === "day"
-            ? new Date(item.date).toLocaleDateString("vi-VN")
-            : item[type]
-        );
-        const totals = res.data.data.map((item) => item.total);
+        const data = res.data.data;
+        console.log("📊 Dữ liệu từ backend:", data);
+
+        // Tạo nhãn theo loại dữ liệu
+        const labels = data.map((item) => {
+          if (type === "day" && item.date) {
+            const d = new Date(item.date);
+            const day = String(d.getDate()).padStart(2, "0");
+            const month = String(d.getMonth() + 1).padStart(2, "0");
+            return `${day}/${month}`;
+          } else if (type === "month" && item.month) {
+            return `Tháng ${item.month.slice(5)}/${item.month.slice(0, 4)}`;
+          } else if (type === "year" && item.year) {
+            return `Năm ${item.year}`;
+          } else {
+            return "Không xác định";
+          }
+        });
+
+        // Lấy dữ liệu doanh thu
+        const totals = data.map((item) => Number(item.total || 0));
 
         setChartData({
           labels,
@@ -45,9 +58,9 @@ const RevenueChart = () => {
             {
               label: "Doanh thu",
               data: totals,
-              fill: false,
-              borderColor: "rgb(75, 192, 192)",
-              tension: 0.4,
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
             },
           ],
         });
@@ -73,7 +86,30 @@ const RevenueChart = () => {
       </div>
 
       {chartData ? (
-        <Line data={chartData} />
+        <Bar
+          data={chartData}
+          options={{
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  callback: (value) => value.toLocaleString("vi-VN") + " ₫",
+                },
+              },
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: (ctx) =>
+                    `${ctx.dataset.label}: ${ctx.raw.toLocaleString(
+                      "vi-VN"
+                    )} ₫`,
+                },
+              },
+            },
+          }}
+        />
       ) : (
         <p>Đang tải dữ liệu biểu đồ...</p>
       )}

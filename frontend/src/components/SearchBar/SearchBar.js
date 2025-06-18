@@ -32,7 +32,7 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("userId");
-    localStorage.setItem("userId", 0); 
+    localStorage.setItem("userId", 0);
     setUser(null);
     setShowDropdown(false);
     navigate("/");
@@ -77,9 +77,6 @@ const Header = () => {
               className="logo"
             />
           </Link>
-          <div className="menu-icon">
-            <i className="fa fa-th" aria-hidden="true"></i>
-          </div>
         </div>
 
         {/* Search */}
@@ -87,7 +84,7 @@ const Header = () => {
           <input
             type="text"
             name="query"
-            placeholder="Một Con Người Và Một Dân Tộc"
+            placeholder="Tìm kiếm sản phẩm bạn muốn..."
             aria-label="Tìm kiếm sản phẩm"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -102,7 +99,7 @@ const Header = () => {
           <div className="icon-with-label">
             <Link to="/orders" className="icon-with-label link-no-underline">
               <div className="icon-bell">
-                <i className="fa fa-bell"></i>
+                <i className="fa fa-history"></i>
               </div>
               <div className="label">Đơn đã mua</div>
             </Link>
@@ -111,7 +108,7 @@ const Header = () => {
           <div className="icon-with-label">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             <Link to="/cart" className="cart-link link-no-underline">
-            <div className="label">🛒Giỏ Hàng</div>
+              <div className="label">Giỏ Hàng</div>
             </Link>
           </div>
 
@@ -139,7 +136,7 @@ const Header = () => {
           </div>
 
           <div className="lang-selector" aria-label="Chọn ngôn ngữ">
-            🇻🇳 <i className="fa fa-chevron-down" aria-hidden="true"></i>
+            🇻🇳 <i className="" aria-hidden="true"></i>
           </div>
         </div>
       </div>

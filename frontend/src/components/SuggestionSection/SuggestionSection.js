@@ -32,30 +32,36 @@ const SuggestionSection = () => {
               : calculatePrice(p.original_price, p.discount);
 
           return (
-            <Link to={`/product/${p.id}`} key={p.id} className="link-no-underline">
-            <div  className="suggestion-card">
-              <div className="image-wrapper">
-                <img src={p.image_url} alt={p.title} />
-              </div>
-
-              <div className="suggestion-info">
-                <div className="suggestion-title-text">{p.title}</div>
-                <div>
-                  <span className="suggestion-price">
-                    {price.toLocaleString()}₫
-                  </span>
-                  {p.discount > 0 && (
-                    <span className="suggestion-original">
-                      {p.original_price.toLocaleString()}₫
-                    </span>
-                  )}
+            <Link
+              to={`/product/${p.id}`}
+              key={p.id}
+              className="link-no-underline"
+            >
+              <div className="suggestion-card">
+                <div className="image-wrapper">
+                  <img src={p.image_url} alt={p.title} />
                 </div>
-                {p.discount > 0 && (
-                  <div className="suggestion-discount">-{p.discount}%</div>
-                )}
-                <div className="suggestion-sold">Đã bán {p.DB}</div>
+
+                <div className="suggestion-info">
+                  <div className="suggestion-title-text">{p.title}</div>
+                  <div>
+                    <span className="suggestion-price">
+                      {price.toLocaleString()}₫
+                    </span>
+                    {p.discount > 0 && (
+                      <span className="suggestion-original">
+                        {p.original_price.toLocaleString()}₫
+                      </span>
+                    )}
+                  </div>
+                  {p.discount > 0 && (
+                    <div className="suggestion-discount">-{p.discount}%</div>
+                  )}
+                  <div className="suggestion-sold">
+                    Đã bán {p.DB} | còn lại {p.SL - p.DB}
+                  </div>
+                </div>
               </div>
-            </div>
             </Link>
           );
         })}

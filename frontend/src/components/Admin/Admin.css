@@ -14,8 +14,8 @@
 /* Sidebar Styles */
 .sidebar {
   width: 260px;
-  background-color: #111827;
-  color: white;
+  background-color: #090d12 !important;
+  color: white !important;
   display: flex;
   flex-direction: column;
 }

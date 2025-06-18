@@ -6,7 +6,6 @@ import "./Admin.css";
 import SectionAdminProducts from "./SectionAdminProducts";
 
 // Components
-import SummaryCards from "./Dashboard/SummaryCards";
 import RecentOrders from "./Dashboard/Orders";
 import RevenueChart from "./Dashboard/RevenueChart";
 import SectionAdminUsers from "./SectionAdminUsers";
@@ -38,7 +37,6 @@ const Admin = () => {
 const Dashboard = () => (
   <div className="dashboard-container">
     <h1 className="dashboard-title">Tổng quan</h1>
-    <SummaryCards />
     <div className="grid-2col"></div>
   </div>
 );
