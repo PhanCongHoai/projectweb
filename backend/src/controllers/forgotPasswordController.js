@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
 // ✅ Import đúng model
-const { User } = require("../models/AssociationsRelationship");
+const { User } = require("../models");
 
 // ✅ Cấu hình nodemailer
 const transporter = nodemailer.createTransport({
