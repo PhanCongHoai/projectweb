@@ -61,12 +61,12 @@ const Footer = () => {
             alt="Fahasa.com"
             className="logo"
           />
-          <p className="address">Lầu 5, 387-389 Hai Bà Trưng, Quận 3, TP HCM</p>
+          <p className="address">11 Nguyễn Đình Chiểu, Đa Kao, Quận 1, Hồ Chí Minh</p>
           <p className="company-name">
-            Công Ty Cổ Phần Phát Hành Sách TP HCM - FAHASA
+            Công Ty Cổ Phần Phát Hành Sách
           </p>
           <p className="address-detail">
-            60 - 62 Lê Lợi, Quận 1, TP. HCM, Việt Nam
+            97 Man Thiện, Hiệp Phú, Thủ Đức, Hồ Chí Minh
           </p>
           <p className="note">
             Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. <br />

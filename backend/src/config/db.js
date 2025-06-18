@@ -8,15 +8,18 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT, 10),
     dialect: process.env.DB_DIALECT,
+    port: process.env.DB_PORT,
     dialectOptions: {
       options: {
         encrypt: process.env.DB_ENCRYPT === "true",
         trustServerCertificate: process.env.DB_TRUST_SERVER_CERT === "true",
       },
     },
-    logging: process.env.DB_LOGGING === "true" ? console.log : false,
+    logging: process.env.DB_LOGGING === "true",
+    retry: {
+      max: 10, // thử lại 10 lần
+    },
   }
 );
 
@@ -47,3 +50,10 @@ module.exports = {
   connectDB,
   syncDB,
 };
+
+console.log("👉 ENV CHECK", {
+  DB_HOST: process.env.DB_HOST,
+  DB_USER: process.env.DB_USER,
+  DB_PASSWORD: process.env.DB_PASSWORD,
+  DB_NAME: process.env.DB_NAME
+});
